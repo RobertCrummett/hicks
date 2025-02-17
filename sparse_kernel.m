@@ -70,18 +70,30 @@ for k = 1:obs_size
 	iy_upper = iy_middle + iy_step;
 
 	if iy_lower < 1
+        if iy_upper < 1
+            continue
+        end
 		iy_lower = 1;
 	end
 	if iy_upper > grid_Y_dim_size
+        if iy_lower > grid_Y_dim_size
+            continue
+        end
 		iy_upper = grid_Y_dim_size;
     end
     if iy_lower > iy_upper
         continue
     end
 	if ix_lower < 1
+        if ix_upper < 1
+            continue
+        end
 		ix_lower = 1;
 	end
 	if ix_upper > grid_X_dim_size
+        if ix_lower > grid_X_dim_size
+            continue
+        end
 	    ix_upper = grid_X_dim_size;
     end
     if ix_lower > ix_upper
@@ -106,7 +118,6 @@ for k = 1:obs_size
 			end
         end
     end
-    disp(k)
 end
 G = sparse(sp_row, sp_col, sp_val, obs_size, grid_size);
 end
